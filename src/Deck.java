@@ -1,38 +1,46 @@
-public class Deck {}
-public static final int NUMFACES = 13;
-public static final int NUMSUITS = 4;
-public static final int NUMCARDS = 52;
 
-public static final String SUITS[] = {"CLUBS","SPADES","DIAMONDS","HEARTS"};
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
-private int topCardIndex;
-private ArrayList<Card> stackOfCards;
+public class Deck {
 
-// constructor
-public Deck()
-        {
-        {
-        //initialize the instance variables
+        public static ArrayList<Cards> Deck = new ArrayList<Cards>();
+        private final int numCards = 52;
+        private final  int numRanks = 14;
+        private final int numSuits = 4;
+        private int dealt = 0;
+        Random generate = new Random();
 
-        //one loop to go through all SUITS
-        //one loop to go through all FACES
-        //add in each new Card() to the Deck
+        public Deck() {
+
+                for (int j = 2; j < numRanks; j++) {
+                        for (int k = 1; k <= numSuits; k++) {
+                                Cards c = new Cards(j, String.valueOf(k));
+                                Deck.add(c);
+                        }
+                }
+
         }
 
-public int size()  {   return 0;	}
-
-public int numCardsLeft(){
-        return 0;
+        public void shuffle(){
+                Collections.shuffle(Deck);
         }
 
-public void shuffle(){
-        //add code to shuffle deck – Collections has a shuffle
+        public Cards dealCard(){
+                if(dealt == 52){
+                        throw new IllegalStateException("No Cards Left In The Deck");
+                }
+                else{
+                        dealt++;
+                        return (Deck.get(dealt-1));
+                }
         }
 
-public Card nextCard(){   return stackOfCards.get(topCardIndex--);  }
+        public ArrayList<Cards> getDeck(){
+                return Deck;
+        }
 
-public String toString(){
-        return stackOfCards + "   topCardIndex = " + topCardIndex;
-        }
-        }
+
+
 }

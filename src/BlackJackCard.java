@@ -17,4 +17,5 @@ public class BlackJackCard extends Cards {
             return 10;
         return 0;
     }
+}
 
